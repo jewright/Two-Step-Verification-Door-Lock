@@ -1,38 +1,53 @@
-'''
-Haar Cascade Face detection with OpenCV  
-    Based on tutorial by pythonprogramming.net
-    Visit original post: https://pythonprogramming.net/haar-cascade-face-eye-detection-python-opencv-tutorial/  
-Adapted by Marcelo Rovai - MJRoBot.org @ 7Feb2018 
-'''
-
-import numpy as np
 import cv2
+import os
 
-# multiple cascades: https://github.com/Itseez/opencv/tree/master/data/haarcascades
-faceCascade = cv2.CascadeClassifier('Cascades/haarcascade_frontalface_default.xml')
+# Cascades Path
+fCascPath = os.path.dirname(cv2.__file__) + "/data/haarcascade_frontalface_default.xml"
+eCascPath = os.path.dirname(cv2.__file__) + "/data/haarcascade_eye.xml"
+# Cascade Training
+faceCascade = cv2.CascadeClassifier(fCascPath)
+eyeCascade = cv2.CascadeClassifier(eCascPath)
 
-cap = cv2.VideoCapture(0)
-cap.set(3, 640)  # set Width
-cap.set(4, 480)  # set Height
+# Opens Video Feed
+# May need to switch value from between 0 and 1. Depends on the computer.
+video_capture = cv2.VideoCapture(1)
 
 while True:
-    ret, img = cap.read()
-    img = cv2.flip(img, 1)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = faceCascade.detectMultiScale(
-        gray, scaleFactor=1.2, minNeighbors=5, minSize=(20, 20)
-    )
-
+  
+    ret, frames = video_capture.read()
+    # Convert to grayscale
+    gray = cv2.cvtColor(frames, cv2.COLOR_BGR2GRAY)
+    
+    # Detect faces and eyes
+    faces = faceCascade.detectMultiScale(gray, scaleFactor=1.01, minNeighbors=20, minSize=(30, 30),
+                                         flags=cv2.CASCADE_SCALE_IMAGE)
+    eyes = eyeCascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=20, minSize=(30, 30),
+                                       flags=cv2.CASCADE_SCALE_IMAGE)
+    
+    # Put a box around Face and Eyes that are detected. 
     for (x, y, w, h) in faces:
-        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-        roi_gray = gray[y:y + h, x:x + w]
-        roi_color = img[y:y + h, x:x + w]
-
-    cv2.imshow('video', img)
-
-    k = cv2.waitKey(30) & 0xff
-    if k == 27:  # press 'ESC' to quit
+        cv2.rectangle(frames, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    for (ex, ey, ew, eh) in eyes:
+        cv2.rectangle(frames, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 2)
+    
+    
+    # Show number of faces and eyes detected on live feed. This is optional.
+    font = cv2.FONT_HERSHEY_TRIPLEX
+    x, y, w, h = 0, 0, 400, 50
+    cv2.rectangle(frames, (x, x), (x + w, y + h), (0, 0, 0), -1)
+    cv2.putText(frames, "Found {0} faces".format(len(faces)) + " and {0} eyes".format(len(eyes)),
+                (x + int(w / 10), y + int(h / 1.5)), font, 0.7, (255, 255, 255), 2, 5)
+    cv2.imshow('Faces and Eyes Detected', frames)
+    
+    # CLose video feed when q is pressed
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        cv2.destroyAllWindows()
         break
-
-cap.release()
+# Close Window 
+video_capture.release()
 cv2.destroyAllWindows()
+
+# Final output of the last number of detected faces and eyes. This is optional
+print("Found {0} faces".format(len(faces)) + " and {0} eyes".format(len(eyes))+"/n")
+
+
