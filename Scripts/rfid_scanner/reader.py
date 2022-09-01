@@ -12,5 +12,6 @@ try:
         # Print ID data
         print(id)
         print(text)
+        
 finally:
         GPIO.cleanup()
