@@ -17,6 +17,10 @@ import face_recognition
 import imutils
 import pickle
 
+#def trigger():
+#    tri = 22
+#    GPIO.setmode(GPIO.BCM)
+#    GPIO.setup(tri,GPIO.OUT)
 
 def main():
     def countdown(time_sec):
@@ -135,12 +139,23 @@ def main():
 
                     if currentname == 'Enisha':
                         print("Access Granted, Enisha")
+                        #red_led_off()
+                        #green_led_on()
+                        #GPIO.output(tri, GPIO.HIGH)
                     if currentname == 'Bryan':
                         print("Access Granted, Bryan")
+                        #red_led_off()
+                        #green_led_on()
+                        #GPIO.output(tri, GPIO.HIGH)
                     if currentname == 'Jeremiah':
                         print("Access Granted, Jeremiah")
+                        #red_led_off()
+                        #green_led_on()
+                        #GPIO.output(tri, GPIO.HIGH)
                     else:
                         print('denied')
+                        #green_led_off()
+                        #red_led_on()
                         countdown(2)
 
 
