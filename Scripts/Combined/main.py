@@ -86,7 +86,7 @@ def main():
     data = pickle.loads(open(encodingsP, "rb").read())
 
     # src = camera feed
-    vs = VideoStream(src=0, framerate=10).start()
+    vs = cv2.VideoCapture(0)
     time.sleep(2.0)
 
     # start the FPS counter
@@ -96,13 +96,13 @@ def main():
     while True:
         # grab the frame from the threaded video stream and resize it
         # to 500px (to speedup processing)
-        frame = vs.read()
-        frame = imutils.resize(frame, width=500)
+        ret, frame = vs.read()
         # Detect the face boxes
         boxes = face_recognition.face_locations(frame)
         # compute the facial embeddings for each face bounding box
         encodings = face_recognition.face_encodings(frame, boxes)
         names = []
+        # cv2.imshow('',frame)
 
         # loop over the facial embeddings
         for encoding in encodings:
@@ -119,41 +119,30 @@ def main():
                 for i in matchedIdxs:
                     name = data["names"][i]
                     counts[name] = counts.get(name, 0) + 1
-                    print(counts)
-
-
-
+                print(counts)
                 name = max(counts, key=counts.get)
 
                 # if select people are identified, grant access
                 if currentname != name:
                     currentname = name
                     print(currentname)
-                    if currentname == 'Jordyn' and id==jordyn:
+                    if id == jordyn and currentname == 'Jordyn':
                         print("Access Granted, Jordyn")
-
-                        vs.stop()
+                        vs.release()
+                        # do a bit of cleanup
                         cv2.destroyAllWindows()
-                        green_led_on()
                         countdown(5)
 
-                    elif currentname == 'Enisha' and id==enisha:
+                    if currentname == 'Enisha':
                         print("Access Granted, Enisha")
-                        countdown(5)
-                        green_led_on()
-
-                    elif currentname == 'Bryan' and id==bryan:
+                    if currentname == 'Bryan':
                         print("Access Granted, Bryan")
-                        countdown(5)
-                        green_led_on()
-
-                    elif currentname == 'Jeremiah' and id==jeremiah:
+                    if currentname == 'Jeremiah':
                         print("Access Granted, Jeremiah")
-                        countdown(5)
-                        green_led_on()
                     else:
-                        print("Denied Access")
-                        main()
+                        print('denied')
+                        countdown(2)
+
 
             # update the list of names
             names.append(name)

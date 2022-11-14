@@ -9,6 +9,7 @@ import pickle
 import time
 import cv2
 
+
 def main():
     def countdown(time_sec):
         while time_sec:
@@ -30,7 +31,7 @@ def main():
     data = pickle.loads(open(encodingsP, "rb").read())
 
     # src = camera feed
-    vs = VideoStream(src=0, framerate=10).start()
+    vs = cv2.VideoCapture(0)
     time.sleep(2.0)
 
     # start the FPS counter
@@ -40,13 +41,13 @@ def main():
     while True:
         # grab the frame from the threaded video stream and resize it
         # to 500px (to speedup processing)
-        frame = vs.read()
-        frame = imutils.resize(frame, width=500)
+        ret, frame = vs.read()
         # Detect the face boxes
         boxes = face_recognition.face_locations(frame)
         # compute the facial embeddings for each face bounding box
         encodings = face_recognition.face_encodings(frame, boxes)
         names = []
+        # cv2.imshow('',frame)
 
         # loop over the facial embeddings
         for encoding in encodings:
@@ -60,10 +61,12 @@ def main():
                 matchedIdxs = [i for (i, b) in enumerate(matches) if b]
                 counts = {}
 
+
+
                 for i in matchedIdxs:
                     name = data["names"][i]
                     counts[name] = counts.get(name, 0) + 1
-
+                print(counts)
                 name = max(counts, key=counts.get)
 
                 # if select people are identified, grant access
@@ -72,7 +75,8 @@ def main():
                     print(currentname)
                     if currentname == 'Jordyn':
                         print("Access Granted, Jordyn")
-                        vs.stop()
+                        vs.release()
+                        # do a bit of cleanup
                         cv2.destroyAllWindows()
                         countdown(5)
 
@@ -100,9 +104,10 @@ def main():
     print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
     print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
 
+    cv2.release()
     # do a bit of cleanup
     cv2.destroyAllWindows()
-    vs.stop()
+
 
 if __name__ == '__main__':
     main()
