@@ -159,6 +159,7 @@ def main():
                         print('denied')
                         #green_led_off()
                         #red_led_on()
+                        #GPIO.output(tri, GPIO.LOW)
                         countdown(2)
 
 
