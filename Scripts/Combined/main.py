@@ -132,6 +132,9 @@ def main():
                     print(currentname)
                     if id == jordyn and currentname == 'Jordyn':
                         print("Access Granted, Jordyn")
+                        #red_led_off()
+                        #green_led_on()
+                        #GPIO.output(tri, GPIO.HIGH)
                         vs.release()
                         # do a bit of cleanup
                         cv2.destroyAllWindows()
