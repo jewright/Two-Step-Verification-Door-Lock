@@ -32,8 +32,8 @@ def main():
 
     # src = camera feed
     vs = cv2.VideoCapture(0)
-    vs.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-    vs.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+    vs.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    vs.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
     # start the FPS counter
     fps = FPS().start()
@@ -48,7 +48,7 @@ def main():
         # compute the facial embeddings for each face bounding box
         encodings = face_recognition.face_encodings(frame, boxes)
         names = []
-        cv2.imshow('',frame)
+        # cv2.imshow('',frame)
 
         # loop over the facial embeddings
         for encoding in encodings:
@@ -85,6 +85,10 @@ def main():
                         print("Access Granted, Enisha")
                     if currentname == 'Bryan':
                         print("Access Granted, Bryan")
+                        vs.release()
+                        # do a bit of cleanup
+                        cv2.destroyAllWindows()
+                        countdown(5)
                     if currentname == 'Jeremiah':
                         print("Access Granted, Jeremiah")
 

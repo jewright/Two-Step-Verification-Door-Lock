@@ -81,15 +81,24 @@ def main():
 
     data = pickle.loads(open(encodingsP, "rb").read())
 
-    vs = cv2.VideoCapture(1)
+    vs = cv2.VideoCapture(0)
+    vs.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    vs.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
+    # start the FPS counter
+    # fps = FPS().start()
+
+    # loop over frames from the video file stream
     while True:
+        # grab the frame from the threaded video stream and resize it
+        # to 500px (to speedup processing)
         ret, frame = vs.read()
-        # cv2.imshow('', frame)
-
+        # Detect the face boxes
         boxes = face_recognition.face_locations(frame)
+        # compute the facial embeddings for each face bounding box
         encodings = face_recognition.face_encodings(frame, boxes)
         names = []
+        # cv2.imshow('',frame)
 
         for encoding in encodings:
             matches = face_recognition.compare_faces(data["encodings"],
@@ -115,18 +124,14 @@ def main():
                         countdown(5)
                     if id == enisha and currentname == 'Enisha':
                         print("Access Granted, Enisha")
-                        vs.release()
-                        cv2.destroyAllWindows()
+
                         countdown(5)
                     if id == bryan and currentname == 'Bryan':
                         print("Access Granted, Bryan")
-                        vs.release()
-                        cv2.destroyAllWindows()
                         countdown(5)
                     if id == jeremiah and currentname == 'Jeremiah':
                         print("Access Granted, Jeremiah")
-                        vs.release()
-                        cv2.destroyAllWindows()
+
                         countdown(5)
                     else:
                         print('Denied Access')
