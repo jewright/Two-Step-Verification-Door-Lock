@@ -4,9 +4,7 @@ For our senior design project, we worked as a team of four. Collectively, we dec
 
 Below are a few images of our final design. 
 
-<img src="https://user-images.githubusercontent.com/16319829/81180309-2b51f000-8fee-11ea-8a78-ddfe8c3412a7.png" width="150" height="280">
-<img src="https://user-images.githubusercontent.com/98404383/208014779-8ea0b0d9-38ce-4cca-8b76-b9c9b5800800.JPG" width="150" height="280">
+<img src="https://user-images.githubusercontent.com/98404383/208014779-8ea0b0d9-38ce-4cca-8b76-b9c9b5800800.JPG" width="1280" height="720">
 
-![IMG_4890](https://user-images.githubusercontent.com/98404383/208014792-59821517-41ce-4f4b-ada1-a424e5e08469.jpg)
-<img src="https://user-images.githubusercontent.com/98404383/208014792-59821517-41ce-4f4b-ada1-a424e5e08469.jpg" width="150" height="280">
+<img src="https://user-images.githubusercontent.com/98404383/208014792-59821517-41ce-4f4b-ada1-a424e5e08469.jpg" width="1280" height="720">
 
