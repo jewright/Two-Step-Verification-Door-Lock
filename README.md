@@ -10,7 +10,7 @@ Hardware:
 - RFID-RC522 Module
 - Dorhea Camera Module
 - Electric Strike Lock
-Software 
+Software:
 - Python
 - OpenCV
 - Facial Recognition
