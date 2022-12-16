@@ -4,12 +4,14 @@
 For our senior design project, we worked as a team of four. Collectively, we decided to design a two-step verification door lock, which had an ideal hardware and software balance. The process begins with an RFID scanner followed by facial recognition. The RFID card is assigned to a user and must match the facial recognition; therefore, different users can't use each other's cards. We created a door frame for the demonstration that included a strike lock within the design.
 
 ## Hardware & Software
+<p align="center">
 | Hardware  | Software |
 | ------------- | ------------- |
 | Raspberry Pi 4B  | Python  |
 | RFID-RC522 Module  | OpenCV  |
 | Dorhea Camera Module | Facial Recognition  |
 | Electric Strike Lock  |   |
+</p>
 
 ## Design Images
 <p align="center">
