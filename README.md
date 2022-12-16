@@ -6,13 +6,13 @@ For our senior design project, we worked as a team of four. Collectively, we dec
 ## Hardware & Software
 
 ---
-Hardware:
-- Raspberry Pi 4B
+Hardware:- Raspberry Pi 4B
 - RFID-RC522 Module
 - Dorhea Camera Module
 - Electric Strike Lock
-Software:
-- Python
+
+
+Software:- Python
 - OpenCV
 - Facial Recognition
 ---
