@@ -5,14 +5,12 @@ For our senior design project, we worked as a team of four. Collectively, we dec
 
 ## Hardware & Software
 <p align="center">
-  
 | Hardware  | Software |
 | ------------- | ------------- |
 | Raspberry Pi 4B  | Python  |
 | RFID-RC522 Module  | OpenCV  |
 | Dorhea Camera Module | Facial Recognition  |
 | Electric Strike Lock  |   |
-
 </p>
 
 ## Design Images
