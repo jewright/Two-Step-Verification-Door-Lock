@@ -5,6 +5,7 @@ For our senior design project, we worked as a team of four. Collectively, we dec
 
 ## Hardware & Software
 <p align="center">
+  
 | Hardware  | Software |
 | ------------- | ------------- |
 | Raspberry Pi 4B  | Python  |
