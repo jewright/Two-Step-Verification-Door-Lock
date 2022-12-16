@@ -1,5 +1,5 @@
 # Two Step Verification Door Lock
-_Contributors: Jeremiah Arthur, Bryan Myles, Enisha Smith, and Jordyn Wright_
+_Contributors: Jeremiah Arthur, Bryan Myles, Enisha Smith, and Jordyn Wright | Project Duration: 1 year_
 
 For our senior design project, we worked as a team of four. Collectively, we decided to design a two-step verification door lock, which had an ideal hardware and software balance. The process begins with an RFID scanner followed by facial recognition. The RFID card is assigned to a user and must match the facial recognition; therefore, different users can't use each other's cards. We created a door frame for the demonstration that included a strike lock within the design.
 
